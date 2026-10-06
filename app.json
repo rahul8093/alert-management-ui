@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Alert Management",
+    "slug": "alert-manager",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#0B2A43",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.example.alertmanager"
+    },
+    "android": {
+      "package": "com.example.alertmanager",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B2A43"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
