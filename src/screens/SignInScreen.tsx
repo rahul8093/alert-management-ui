@@ -18,7 +18,7 @@ import { colors, shadow } from '../theme';
 export default function SignInScreen() {
   const navigation = useNavigation<any>();
   const [email, setEmail] = useState('priya@prashitech.com');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('demo1234');
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(true);
 
@@ -30,7 +30,10 @@ export default function SignInScreen() {
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
         <LinearGradient colors={[colors.navy, colors.navy2]} style={styles.hero}>
           <View style={styles.heroRing} />
-          <View style={styles.brandPlate}><Text style={styles.brandName}>◉ APPRISA</Text><Text style={styles.brandTag}>Complex Made Easy</Text></View>
+          <View style={styles.brandPlate}>
+            <View style={styles.brandRow}><View style={styles.brandMark}><Text style={styles.brandA}>A</Text></View><Text style={styles.brandName}>APPRISA</Text></View>
+            <Text style={styles.brandTag}>Complex Made Easy</Text>
+          </View>
           <Text style={styles.appName}>Alert Management</Text>
           <Text style={styles.tagline}>Monitor alerts. Stay informed.</Text>
         </LinearGradient>
@@ -38,6 +41,7 @@ export default function SignInScreen() {
         <View style={[styles.card, shadow]}>
           <Text style={styles.title}>Welcome back</Text>
           <Text style={styles.subtitle}>Sign in to view your monitoring dashboard</Text>
+          <View style={styles.demoBadge}><View style={styles.demoDot}/><Text style={styles.demoText}>DEMO PREVIEW · SAMPLE DATA</Text></View>
 
           <Text style={styles.label}>Email address</Text>
           <View style={styles.field}>
@@ -136,9 +140,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 14,
   },
-  brandPlate: { backgroundColor: colors.white, borderRadius: 20, paddingHorizontal: 20, paddingVertical: 13, alignItems: 'center', marginBottom: 13 },
-  brandName: { fontSize: 22, fontWeight: '800', color: '#2466AE', letterSpacing: 1 },
+  brandPlate: { backgroundColor: colors.white, borderRadius: 20, paddingHorizontal: 20, paddingVertical: 11, alignItems: 'center', marginBottom: 13 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', gap: 7 },
+  brandMark: { width: 28, height: 28, borderRadius: 14, borderWidth: 2, borderColor: '#2466AE', alignItems: 'center', justifyContent: 'center' },
+  brandA: { fontSize: 18, fontWeight: '800', color: '#2466AE' },
+  brandName: { fontSize: 21, fontWeight: '800', color: '#2466AE', letterSpacing: 1 },
   brandTag: { fontSize: 8, color: colors.gray, letterSpacing: 1.2 },
+  demoBadge: { alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.tealSoft, paddingHorizontal: 9, paddingVertical: 5, borderRadius: 9, marginTop: -8, marginBottom: 15 },
+  demoDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: colors.teal2 },
+  demoText: { fontSize: 8, letterSpacing: 0.5, color: colors.teal2, fontWeight: '800' },
   logoDot: {
     position: 'absolute',
     top: -4,

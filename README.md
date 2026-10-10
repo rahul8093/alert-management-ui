@@ -1,64 +1,37 @@
-# Alert Manager — React Native (Expo) app
+# Alert Management mobile demo
 
-This is the **UI-only** version of the Alert Manager mobile app: Sign in, Dashboard,
-Trends, Alerts and Reports, matching the wireframes and PDF design. All data is
-mock data in `src/data/mock.ts` — there is no backend, login check, or push
-notification wiring yet. It's meant as the visual/interaction layer to build
-real features on top of.
+Client-ready UI prototype for the Alert Management app design. Built with React Native and Expo. All screens use local sample data so the app can be demonstrated without a backend or network connection.
 
-## What's included
-- **Sign in** — email/password form, password visibility toggle, remember me.
-  "Sign in" just navigates to the app (no real auth).
-- **Dashboard** — company selector, notification bell with badge, critical alert
-  banner, stat tiles, and two live parameter cards (BOD, Flow Volume).
-- **Trends** — all 8 CPCB parameters as a two-column grid of cards, opened from
-  the Dashboard.
-- **Alerts** — searchable, filterable inbox (Critical / Warning / Offline).
-- **Reports** — company + site dropdowns, a date/date-range picker (bottom
-  sheet calendar), and a data table with the same columns as your sheet
-  (Site, log_date, BOD, TSS, COD, pH, Flow Volume, Flow Out, PM). Out-of-range
-  values are tinted red. The table scrolls horizontally.
+## Run the demo
 
-## Project structure
-```
-App.tsx                     entry point
-src/
-  theme.ts                  colors + shadow shared across the app
-  context/AppContext.tsx    holds the selected company (shared by Dashboard & Reports)
-  data/mock.ts              placeholder companies, sites, parameters, alerts, report rows
-  utils/date.ts             date formatting + calendar helpers
-  components/               GradientHeader, BellButton, ParameterCard, Sparkline,
-                             AlertCard, Dropdown, DateFilterModal, StatusPill
-  navigation/
-    RootNavigator.tsx       Sign in -> Main
-    MainTabs.tsx             bottom tabs: Dashboard (+ Trends), Alerts, Reports
-  screens/
-    SignInScreen.tsx
-    DashboardScreen.tsx
-    TrendsScreen.tsx
-    AlertsScreen.tsx
-    ReportsScreen.tsx
-```
+1. Install [Expo Go](https://expo.dev/client) on an iPhone or Android phone, or start a simulator.
+2. From this project folder, run:
 
-## Run it
-Requires Node.js 18+ and the Expo Go app on your phone (or an emulator).
+   ```sh
+   npm install
+   npx expo start
+   ```
 
-```bash
-npm install
-npx expo start
-```
+3. Scan the QR code in Expo Go (Android) or with the iPhone Camera app. Press `i` or `a` in the terminal to use a simulator/emulator.
+4. The sign-in screen is prefilled for the demo. Tap **Sign in**; credentials are not validated.
 
-Then scan the QR code with Expo Go (Android) or the Camera app (iOS), or press
-`i` / `a` in the terminal for a simulator/emulator, or `w` for a web preview.
+## Demo flow
 
-## Wiring it to real data next
-- Replace the arrays/functions in `src/data/mock.ts` with API calls (e.g. with
-  `fetch`, `axios`, or React Query) — the screens already expect the same
-  shapes (`Parameter`, `AlertItem`, `ReportRow`), so most screens won't need
-  to change.
-- `AppContext` currently only stores the selected company; extend it with the
-  logged-in user and auth token once sign-in is real.
-- The Reports table renders up to 60 rows for smoothness; swap in
-  pagination or a "load more" call to the API for larger ranges.
-- `Export` on the Reports screen is a placeholder button; wire it to your
-  CSV/Excel export endpoint or `expo-file-system` + `expo-sharing`.
+- **Dashboard:** choose a site, review the critical alert, status summary, failure events and parameter compliance chart.
+- **Alerts:** search and filter critical, warning, offline, sensor and resolved events. Tap an event for its details.
+- **Reports:** choose Effluent ETP or Emission Stack, set a date and site, then switch between Table and Graph.
+- **Account access:** explore the Forgot Password and Contact Administrator screens from Sign in.
+- **Trends:** open the parameter overview from the Dashboard.
+
+## Prototype behavior
+
+Sign in, reset link, alert details, filters, report views and calendar selection are frontend interactions only. Export displays a prototype message; it does not create a file. Contact actions open the device email or phone app when available. Replace `src/data/mock.ts` and the screen-level sample values with backend services when those are ready.
+
+## Main files
+
+- `App.tsx` — app entry point and providers
+- `src/navigation/` — sign-in stack and bottom tabs
+- `src/screens/` — Sign in, Dashboard, Trends, Alerts, Reports, Forgot Password and Contact Administrator
+- `src/components/` — shared headers, cards, dropdowns and date picker
+- `src/data/mock.ts` — sample parameters, alerts, sites and report readings
+- `src/theme.ts` — shared colors and elevation
